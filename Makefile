@@ -1,5 +1,5 @@
 CXXFLAGS=-Wall -O3 -g
-BINARIES=led-matrix minimal-example
+BINARIES=led-matrix llnw-led
 
 # Where our library resides. It is split between includes and the binary
 # library in lib
@@ -17,8 +17,8 @@ $(RGB_LIBRARY):
 led-matrix : demo-main.o $(RGB_LIBRARY)
 	$(CXX) $(CXXFLAGS) demo-main.o -o $@ $(LDFLAGS)
 
-minimal-example : minimal-example.o $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) minimal-example.o -o $@ $(LDFLAGS)
+llnw-led : llnw-led.o $(RGB_LIBRARY)
+	$(CXX) $(CXXFLAGS) llnw-led.o -o $@ $(LDFLAGS)
 
 %.o : %.cc
 	$(CXX) -I$(RGB_INCDIR) $(CXXFLAGS) -c -o $@ $<
