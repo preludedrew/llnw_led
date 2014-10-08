@@ -55,13 +55,8 @@ public:
         printf("Using offset: %d\n", offset);
 
         int r,g,b = 0;
-        r = 0;
-        g = 0;
-        b = 255;
-
         // Set colors based on days
-        /* For some reason one of the matrix's would not show colors correctly except for green and blue.
-        if (days <= 20) {
+        if (days <= 20 || days == 999) {
             r = 255;
             g = 0;
             b = 0;
@@ -69,16 +64,11 @@ public:
             r = 255;
             g = 255;
             b = 0;
-        } else if (days > 999) {
-            days = 999;
-            r = 255;
-            g = 0;
-            b = 0;
         } else {
             r = 0;
-            g = 0;
-            b = 255;
-        } */
+            g = 255;
+            b = 0;
+        }
 
         int pos = 0;
         for (int i = 0; i < len; i++) {
