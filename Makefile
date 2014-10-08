@@ -1,5 +1,5 @@
 CXXFLAGS=-Wall -O3 -g
-BINARIES=led-matrix llnw-led
+BINARIES=llnw-led
 
 # Where our library resides. It is split between includes and the binary
 # library in lib
@@ -14,8 +14,6 @@ all : $(BINARIES)
 $(RGB_LIBRARY):
 	$(MAKE) -C $(RGB_LIBDIR)
 
-led-matrix : demo-main.o $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) demo-main.o -o $@ $(LDFLAGS)
 
 llnw-led : llnw-led.o $(RGB_LIBRARY)
 	$(CXX) $(CXXFLAGS) llnw-led.o -o $@ $(LDFLAGS)
