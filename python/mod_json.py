@@ -2,9 +2,13 @@
 
 import json
 
-JSON_FILE = "/tmp/jsonfile"
-MOD_FILE = "/tmp/testfile"
+JSON_FILE = "/var/www/uptimesign/live/json/uptime_delivery.json"
+MOD_FILE = "/var/www/uptimesign/uptime.post"
 DEBUG = True
+
+max_days_entry = "max_days"
+days_since_entry = "days_since"
+
 
 def updateJson(curr, max):
 
@@ -13,20 +17,20 @@ def updateJson(curr, max):
 
     # Current days since
     if curr > -1:
-        currInfo["curr"] = curr
+        currInfo[days_since_entry] = curr
     else:
-        currInfo["curr"] = currInfo["curr"] + 1
+        currInfo[days_since_entry] = currInfo[days_since_entry] + 1
 
     # Max days since
     if (max > -1):
-        currInfo["max"] = max
+        currInfo[max_days_entry] = max
     else:
-        if (currInfo["curr"] >= currInfo["max"]):
-            currInfo["max"] = currInfo["curr"]
-        
+        if (currInfo[days_since_entry] >= currInfo[max_days_entry]):
+            currInfo[max_days_entry] = currInfo[days_since_entry]
+
     if (DEBUG):
         print "Printing to file: [ ", currInfo, "]"
-    
+
     with open(JSON_FILE, "w") as jsonFile:
         jsonFile.write(json.dumps(currInfo))
 
